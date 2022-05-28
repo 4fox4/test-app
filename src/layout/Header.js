@@ -2,9 +2,13 @@ import * as React from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+
+const pages = [{ name: "Home", route: "/" }];
 
 export default function Header() {
   return (
@@ -17,7 +21,7 @@ export default function Header() {
           })}
         />
         <Typography
-          variant="h5"
+          variant="h6"
           noWrap
           sx={{
             mr: 2,
@@ -28,6 +32,13 @@ export default function Header() {
         >
           ACME
         </Typography>
+        <Box sx={{ flexGrow: 1, display: "flex" }}>
+          {pages.map((page) => (
+            <Button size="large" key={page.name} color="inherit">
+              {page.name}
+            </Button>
+          ))}
+        </Box>
       </Toolbar>
     </AppBar>
   );

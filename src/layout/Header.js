@@ -7,8 +7,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { Link } from "react-router-dom";
 
-const pages = [{ name: "Home", route: "/" }];
+const pages = [
+  { name: "Home", route: "/" },
+  { name: "Counter", route: "/counter" },
+];
 
 export default function Header() {
   return (
@@ -34,7 +38,13 @@ export default function Header() {
         </Typography>
         <Box sx={{ flexGrow: 1, display: "flex" }}>
           {pages.map((page) => (
-            <Button size="large" key={page.name} color="inherit">
+            <Button
+              LinkComponent={Link}
+              to={page.route}
+              size="large"
+              key={page.name}
+              color="inherit"
+            >
               {page.name}
             </Button>
           ))}

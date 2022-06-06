@@ -1,44 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Fab from "@mui/material/Fab";
+import TextField from "@mui/material/TextField";
+
+import Count from "../components/Count";
+import PageTitle from "../components/PageTitle";
+
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
 export default function CounterPage() {
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    console.log("Component did mount 🔥 !");
-  }, []);
-
-  useEffect(() => {
-    console.log("Counter change 🧯 !");
-  }, [counter]);
-
-  const incrementer = () => {
-    setCounter(counter + 1);
-  };
-  const decrementer = () => {
-    setCounter(counter - 1);
-  };
   return (
-    <Box px={3}>
-      <Typography
-        variant="h3"
-        noWrap
-        sx={{
-          mr: 2,
-          fontWeight: "900",
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      >
-        Counter page
-      </Typography>
-      <Button onClick={decrementer}>Minus</Button>
-      {counter}
-      <Button onClick={incrementer}>Plus</Button>
-      {/* <Button title="Plus"></Button> */}
+    <Box>
+      <PageTitle>Counter page</PageTitle>
+      <Box display="flex" justifyContent="center" alignItems="center" mb={4}>
+        <Fab size="small" sx={{ boxShadow: "none" }}>
+          <RemoveRoundedIcon />
+        </Fab>
+        <Box px={4}>
+          <Count count={0} />
+        </Box>
+        <Fab size="small" sx={{ boxShadow: "none" }}>
+          <AddRoundedIcon />
+        </Fab>
+      </Box>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <TextField size="small" label="Texte" />
+      </Box>
     </Box>
   );
 }

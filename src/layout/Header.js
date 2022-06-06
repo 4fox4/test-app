@@ -1,13 +1,12 @@
 import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
 
 const pages = [
   { name: "Home", route: "/" },
@@ -15,35 +14,19 @@ const pages = [
 ];
 
 export default function Header() {
+  const location = useLocation();
   return (
     <AppBar position="static" elevation={0} color="inherit">
       <Toolbar>
-        <FavoriteRoundedIcon
-          sx={(theme) => ({
-            mr: 1,
-            color: theme.palette.primary.main,
-          })}
-        />
-        <Typography
-          variant="h6"
-          noWrap
-          sx={{
-            mr: 2,
-            fontWeight: "900",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          ACME
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: "flex" }}>
+        <Logo />
+        <Box ml={2} sx={{ flexGrow: 1, display: "flex" }}>
           {pages.map((page) => (
             <Button
               LinkComponent={Link}
               to={page.route}
               size="large"
               key={page.name}
-              color="inherit"
+              color={page.route === location.pathname ? "primary" : "inherit"}
             >
               {page.name}
             </Button>
